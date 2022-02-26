@@ -21,13 +21,25 @@ const books = [
     { id: 8, name: 'Beyond the Shadows', authorId: 3 }
 ];
 
+const AuthorType = new GraphQLObjectType({
+    name: 'Author',
+    description: 'this is an author',
+    fields: () => ({
+        id: { type: GraphQLID },
+        name: { type: GraphQLString }
+    })
+});
+
 const BookType = new GraphQLObjectType({
     name: 'Book',
     description: 'this is a book',
     fields: () => ({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
-        authorId: { type: GraphQLID }
+        author: {
+            type: AuthorType,
+            resolve: book => authors.find(author => author.id === book.authorId)
+        }
     })
 });
 
