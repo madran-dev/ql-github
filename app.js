@@ -11,6 +11,7 @@ const GithubAccountType = new GraphQLObjectType({
     fields: () => ({
         login: { type: GraphQLString },
         url: { type: GraphQLString },
+        public_repos: { type: GraphQLInt },
         followers: { type: GraphQLInt },
     })
 });
